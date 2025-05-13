@@ -1,0 +1,196 @@
+{
+    "brawlers": [
+      {
+        "id": 1,
+        "nombre": "Mario",
+        "nombreClave": "PlumberHero",
+        "descripcion": "El héroe del Reino Champiñón.",
+        "trajes": ["Clásico", "Tanooki", "Fire"],
+        "fuerza": 80,
+        "ataques": [
+          { "tipo": "ataque", "nombre": "Fireball", "daño": 18 },
+          { "tipo": "ataque", "nombre": "Martillazo", "daño": 22 },
+          { "tipo": "defensa", "nombre": "Capa", "efecto": "refleja daño" },
+          { "tipo": "curacion", "nombre": "Champiñón", "cura": 15 }
+        ],
+        "debilidades": ["Fuego", "Caídas"],
+        "imagen": "https://via.placeholder.com/150"
+      },
+      {
+        "id": 2,
+        "nombre": "Link",
+        "nombreClave": "HylianKnight",
+        "descripcion": "Guerrero de Hyrule con espada y escudo.",
+        "trajes": ["Verde", "Zora", "Oscuro"],
+        "fuerza": 85,
+        "ataques": [
+          { "tipo": "ataque", "nombre": "Espadazo", "daño": 20 },
+          { "tipo": "ataque", "nombre": "Bomba", "daño": 25 },
+          { "tipo": "defensa", "nombre": "Escudo Hyliano", "efecto": "bloquea daño" },
+          { "tipo": "curacion", "nombre": "Hada", "cura": 20 }
+        ],
+        "debilidades": ["Magia", "Electricidad"],
+        "imagen": "https://via.placeholder.com/150"
+      },
+      {
+        "id": 3,
+        "nombre": "Yoshi",
+        "nombreClave": "EggRider",
+        "descripcion": "Dino veloz con lengua elástica.",
+        "trajes": ["Verde", "Rojo", "Azul"],
+        "fuerza": 70,
+        "ataques": [
+          { "tipo": "ataque", "nombre": "Lanzar huevo", "daño": 16 },
+          { "tipo": "ataque", "nombre": "Pisotón", "daño": 19 },
+          { "tipo": "defensa", "nombre": "Rodar en huevo", "efecto": "reduce daño" },
+          { "tipo": "curacion", "nombre": "Fruta", "cura": 12 }
+        ],
+        "debilidades": ["Hielo", "Caídas"],
+        "imagen": "https://via.placeholder.com/150"
+      },
+      {
+        "id": 4,
+        "nombre": "Kirby",
+        "nombreClave": "StarWarrior",
+        "descripcion": "Glotón rosado con poderes de copia.",
+        "trajes": ["Normal", "Espada", "Fuego"],
+        "fuerza": 75,
+        "ataques": [
+          { "tipo": "ataque", "nombre": "Tragar y escupir", "daño": 20 },
+          { "tipo": "ataque", "nombre": "Martillo gigante", "daño": 25 },
+          { "tipo": "defensa", "nombre": "Inflarse", "efecto": "evade ataque" },
+          { "tipo": "curacion", "nombre": "Maxim Tomato", "cura": 18 }
+        ],
+        "debilidades": ["Corte", "Oscuridad"],
+        "imagen": "https://via.placeholder.com/150"
+      },
+      {
+        "id": 5,
+        "nombre": "Peach",
+        "nombreClave": "MushroomQueen",
+        "descripcion": "La princesa con habilidades mágicas.",
+        "trajes": ["Clásico", "Daisy", "Dorothy"],
+        "fuerza": 68,
+        "ataques": [
+          { "tipo": "ataque", "nombre": "Parasol Bash", "daño": 17 },
+          { "tipo": "ataque", "nombre": "Toad Shield", "daño": 20 },
+          { "tipo": "defensa", "nombre": "Flotar", "efecto": "reduce daño recibido" },
+          { "tipo": "curacion", "nombre": "Corazón", "cura": 16 }
+        ],
+        "debilidades": ["Físico", "Oscuridad"],
+        "imagen": "https://via.placeholder.com/150"
+      },
+      {
+        "id": 6,
+        "nombre": "Bayonetta",
+        "nombreClave": "UmbraWitch",
+        "descripcion": "Bruja que combate con estilo y magia.",
+        "trajes": ["Negro", "Rojo", "Jeanne"],
+        "fuerza": 90,
+        "ataques": [
+          { "tipo": "ataque", "nombre": "Tortura infernal", "daño": 28 },
+          { "tipo": "ataque", "nombre": "Balas mágicas", "daño": 22 },
+          { "tipo": "defensa", "nombre": "Tiempo Brujo", "efecto": "evade completamente" },
+          { "tipo": "curacion", "nombre": "Lollipop", "cura": 15 }
+        ],
+        "debilidades": ["Luz", "Corte"],
+        "imagen": "https://via.placeholder.com/150"
+      },
+      {
+        "id": 7,
+        "nombre": "Pac-Man",
+        "nombreClave": "MazeMaster",
+        "descripcion": "Ícono clásico que devora fantasmas.",
+        "trajes": ["Clásico", "3D", "Retro"],
+        "fuerza": 65,
+        "ataques": [
+          { "tipo": "ataque", "nombre": "Pelota gigante", "daño": 18 },
+          { "tipo": "ataque", "nombre": "Lanzamiento frutal", "daño": 15 },
+          { "tipo": "defensa", "nombre": "Escape en laberinto", "efecto": "reduce daño" },
+          { "tipo": "curacion", "nombre": "Cereza", "cura": 10 }
+        ],
+        "debilidades": ["Fuego", "Oscuridad"],
+        "imagen": "https://via.placeholder.com/150"
+      },
+      {
+        "id": 8,
+        "nombre": "Sonic",
+        "nombreClave": "Speedster",
+        "descripcion": "El erizo azul más veloz del mundo.",
+        "trajes": ["Clásico", "Shadow", "Werehog"],
+        "fuerza": 70,
+        "ataques": [
+          { "tipo": "ataque", "nombre": "Ataque giratorio", "daño": 20 },
+          { "tipo": "ataque", "nombre": "Carga sónica", "daño": 25 },
+          { "tipo": "defensa", "nombre": "Deslizamiento", "efecto": "evade ataque" },
+          { "tipo": "curacion", "nombre": "Anillo", "cura": 12 }
+        ],
+        "debilidades": ["Agua", "Trampas"],
+        "imagen": "https://via.placeholder.com/150"
+      },
+      {
+        "id": 9,
+        "nombre": "Samus",
+        "nombreClave": "BountyHunter",
+        "descripcion": "Cazadora galáctica con traje tecnológico.",
+        "trajes": ["Power Suit", "Zero Suit", "Dark Samus"],
+        "fuerza": 85,
+        "ataques": [
+          { "tipo": "ataque", "nombre": "Rayo cargado", "daño": 26 },
+          { "tipo": "ataque", "nombre": "Misil", "daño": 22 },
+          { "tipo": "defensa", "nombre": "Morfosfera", "efecto": "reduce daño" },
+          { "tipo": "curacion", "nombre": "Tanque de energía", "cura": 18 }
+        ],
+        "debilidades": ["Electricidad", "Fuerza bruta"],
+        "imagen": "https://via.placeholder.com/150"
+      },
+      {
+        "id": 10,
+        "nombre": "Pikachu",
+        "nombreClave": "ElectricMouse",
+        "descripcion": "Ratón eléctrico veloz y adorable.",
+        "trajes": ["Ash Hat", "Luchador", "Detective"],
+        "fuerza": 60,
+        "ataques": [
+          { "tipo": "ataque", "nombre": "Impactrueno", "daño": 20 },
+          { "tipo": "ataque", "nombre": "Rayo", "daño": 25 },
+          { "tipo": "defensa", "nombre": "Agilidad", "efecto": "esquiva ataque" },
+          { "tipo": "curacion", "nombre": "Bayas", "cura": 10 }
+        ],
+        "debilidades": ["Tierra", "Roca"],
+        "imagen": "https://via.placeholder.com/150"
+      },
+      {
+        "id": 11,
+        "nombre": "Kazuya",
+        "nombreClave": "DevilFist",
+        "descripcion": "Luchador con poder demoníaco.",
+        "trajes": ["Clásico", "Demonio", "Formal"],
+        "fuerza": 95,
+        "ataques": [
+          { "tipo": "ataque", "nombre": "Gancho demoníaco", "daño": 28 },
+          { "tipo": "ataque", "nombre": "Patada giratoria", "daño": 24 },
+          { "tipo": "defensa", "nombre": "Bloqueo maestro", "efecto": "reduce daño" },
+          { "tipo": "curacion", "nombre": "Rugido infernal", "cura": 15 }
+        ],
+        "debilidades": ["Luz", "Magia"],
+        "imagen": "https://via.placeholder.com/150"
+      },
+      {
+        "id": 12,
+        "nombre": "Sephiroth",
+        "nombreClave": "OneWingedAngel",
+        "descripcion": "Villano poderoso con espada Masamune.",
+        "trajes": ["Negro", "Sin ala", "Soldado"],
+        "fuerza": 95,
+        "ataques": [
+          { "tipo": "ataque", "nombre": "Corte largo", "daño": 30 },
+          { "tipo": "ataque", "nombre": "Llama oscura", "daño": 25 },
+          { "tipo": "defensa", "nombre": "Alas protectoras", "efecto": "bloquea parte del daño" },
+          { "tipo": "curacion", "nombre": "Materia oscura", "cura": 18 }
+        ],
+        "debilidades": ["Luz", "Espíritu"],
+        "imagen": "https://via.placeholder.com/150"
+      }
+    ]
+  }
