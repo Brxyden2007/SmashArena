@@ -10,8 +10,8 @@
         "ataques": [
           { "tipo": "ataque", "nombre": "Fireball", "daño": 18 },
           { "tipo": "ataque", "nombre": "Martillazo", "daño": 22 },
-          { "tipo": "defensa", "nombre": "Capa", "efecto": "refleja daño" },
-          { "tipo": "curacion", "nombre": "Champiñón", "cura": 15 }
+          { "tipo": "defensa", "nombre": "Capa", "efecto": "refleja daño" }
+
         ],
         "debilidades": ["Fuego", "Caídas"],
         "imagen": "https://via.placeholder.com/150"
@@ -26,8 +26,7 @@
         "ataques": [
           { "tipo": "ataque", "nombre": "Espadazo", "daño": 20 },
           { "tipo": "ataque", "nombre": "Bomba", "daño": 25 },
-          { "tipo": "defensa", "nombre": "Escudo Hyliano", "efecto": "bloquea daño" },
-          { "tipo": "curacion", "nombre": "Hada", "cura": 20 }
+          { "tipo": "defensa", "nombre": "Escudo Hyliano", "efecto": "bloquea daño" }
         ],
         "debilidades": ["Magia", "Electricidad"],
         "imagen": "https://via.placeholder.com/150"
@@ -42,8 +41,7 @@
         "ataques": [
           { "tipo": "ataque", "nombre": "Lanzar huevo", "daño": 16 },
           { "tipo": "ataque", "nombre": "Pisotón", "daño": 19 },
-          { "tipo": "defensa", "nombre": "Rodar en huevo", "efecto": "reduce daño" },
-          { "tipo": "curacion", "nombre": "Fruta", "cura": 12 }
+          { "tipo": "defensa", "nombre": "Rodar en huevo", "efecto": "reduce daño" }
         ],
         "debilidades": ["Hielo", "Caídas"],
         "imagen": "https://via.placeholder.com/150"
@@ -58,8 +56,7 @@
         "ataques": [
           { "tipo": "ataque", "nombre": "Tragar y escupir", "daño": 20 },
           { "tipo": "ataque", "nombre": "Martillo gigante", "daño": 25 },
-          { "tipo": "defensa", "nombre": "Inflarse", "efecto": "evade ataque" },
-          { "tipo": "curacion", "nombre": "Maxim Tomato", "cura": 18 }
+          { "tipo": "defensa", "nombre": "Inflarse", "efecto": "evade ataque" }
         ],
         "debilidades": ["Corte", "Oscuridad"],
         "imagen": "https://via.placeholder.com/150"
@@ -74,8 +71,7 @@
         "ataques": [
           { "tipo": "ataque", "nombre": "Parasol Bash", "daño": 17 },
           { "tipo": "ataque", "nombre": "Toad Shield", "daño": 20 },
-          { "tipo": "defensa", "nombre": "Flotar", "efecto": "reduce daño recibido" },
-          { "tipo": "curacion", "nombre": "Corazón", "cura": 16 }
+          { "tipo": "defensa", "nombre": "Flotar", "efecto": "reduce daño recibido" }
         ],
         "debilidades": ["Físico", "Oscuridad"],
         "imagen": "https://via.placeholder.com/150"
@@ -90,8 +86,7 @@
         "ataques": [
           { "tipo": "ataque", "nombre": "Tortura infernal", "daño": 28 },
           { "tipo": "ataque", "nombre": "Balas mágicas", "daño": 22 },
-          { "tipo": "defensa", "nombre": "Tiempo Brujo", "efecto": "evade completamente" },
-          { "tipo": "curacion", "nombre": "Lollipop", "cura": 15 }
+          { "tipo": "defensa", "nombre": "Tiempo Brujo", "efecto": "evade completamente" }
         ],
         "debilidades": ["Luz", "Corte"],
         "imagen": "https://via.placeholder.com/150"
@@ -106,8 +101,7 @@
         "ataques": [
           { "tipo": "ataque", "nombre": "Pelota gigante", "daño": 18 },
           { "tipo": "ataque", "nombre": "Lanzamiento frutal", "daño": 15 },
-          { "tipo": "defensa", "nombre": "Escape en laberinto", "efecto": "reduce daño" },
-          { "tipo": "curacion", "nombre": "Cereza", "cura": 10 }
+          { "tipo": "defensa", "nombre": "Escape en laberinto", "efecto": "reduce daño" }
         ],
         "debilidades": ["Fuego", "Oscuridad"],
         "imagen": "https://via.placeholder.com/150"
@@ -122,8 +116,7 @@
         "ataques": [
           { "tipo": "ataque", "nombre": "Ataque giratorio", "daño": 20 },
           { "tipo": "ataque", "nombre": "Carga sónica", "daño": 25 },
-          { "tipo": "defensa", "nombre": "Deslizamiento", "efecto": "evade ataque" },
-          { "tipo": "curacion", "nombre": "Anillo", "cura": 12 }
+          { "tipo": "defensa", "nombre": "Deslizamiento", "efecto": "evade ataque" }
         ],
         "debilidades": ["Agua", "Trampas"],
         "imagen": "https://via.placeholder.com/150"
@@ -138,8 +131,7 @@
         "ataques": [
           { "tipo": "ataque", "nombre": "Rayo cargado", "daño": 26 },
           { "tipo": "ataque", "nombre": "Misil", "daño": 22 },
-          { "tipo": "defensa", "nombre": "Morfosfera", "efecto": "reduce daño" },
-          { "tipo": "curacion", "nombre": "Tanque de energía", "cura": 18 }
+          { "tipo": "defensa", "nombre": "Morfosfera", "efecto": "reduce daño" }
         ],
         "debilidades": ["Electricidad", "Fuerza bruta"],
         "imagen": "https://via.placeholder.com/150"
@@ -154,8 +146,7 @@
         "ataques": [
           { "tipo": "ataque", "nombre": "Impactrueno", "daño": 20 },
           { "tipo": "ataque", "nombre": "Rayo", "daño": 25 },
-          { "tipo": "defensa", "nombre": "Agilidad", "efecto": "esquiva ataque" },
-          { "tipo": "curacion", "nombre": "Bayas", "cura": 10 }
+          { "tipo": "defensa", "nombre": "Agilidad", "efecto": "esquiva ataque" }
         ],
         "debilidades": ["Tierra", "Roca"],
         "imagen": "https://via.placeholder.com/150"
@@ -170,8 +161,7 @@
         "ataques": [
           { "tipo": "ataque", "nombre": "Gancho demoníaco", "daño": 28 },
           { "tipo": "ataque", "nombre": "Patada giratoria", "daño": 24 },
-          { "tipo": "defensa", "nombre": "Bloqueo maestro", "efecto": "reduce daño" },
-          { "tipo": "curacion", "nombre": "Rugido infernal", "cura": 15 }
+          { "tipo": "defensa", "nombre": "Bloqueo maestro", "efecto": "reduce daño" }
         ],
         "debilidades": ["Luz", "Magia"],
         "imagen": "https://via.placeholder.com/150"
@@ -186,8 +176,7 @@
         "ataques": [
           { "tipo": "ataque", "nombre": "Corte largo", "daño": 30 },
           { "tipo": "ataque", "nombre": "Llama oscura", "daño": 25 },
-          { "tipo": "defensa", "nombre": "Alas protectoras", "efecto": "bloquea parte del daño" },
-          { "tipo": "curacion", "nombre": "Materia oscura", "cura": 18 }
+          { "tipo": "defensa", "nombre": "Alas protectoras", "efecto": "bloquea parte del daño" }
         ],
         "debilidades": ["Luz", "Espíritu"],
         "imagen": "https://via.placeholder.com/150"
