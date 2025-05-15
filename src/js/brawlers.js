@@ -15,53 +15,70 @@ class BrawlerCard extends HTMLElement {
     this.shadowRoot.innerHTML = `
       <style>
         .card-container {
-          perspective: 1000px;
           width: 250px;
           height: 350px;
           margin: 0 auto;
+          position: relative;
         }
 
         .card {
           width: 100%;
           height: 100%;
-          transition: transform 0.6s;
-          transform-style: preserve-3d;
           position: relative;
         }
 
         .front, .back {
           position: absolute;
+          top: 0;
+          left: 0;
           width: 100%;
           height: 100%;
-          backface-visibility: hidden;
           border-radius: 15px;
           overflow: hidden;
           box-shadow: 0 4px 8px rgba(0,0,0,0.2);
           display: flex;
           flex-direction: column;
+          background-color: ${cardColor};
+          transition: opacity 0.3s ease;
+          backface-visibility: hidden;
         }
 
         .front {
-          background-color: ${cardColor};
           padding: 20px;
           justify-content: space-between;
           align-items: center;
+          opacity: 1;
+          z-index: 2;
         }
 
         .back {
-          background-color: ${cardColor};
-          transform: rotateY(180deg);
-          padding: 20px;
-          overflow-y: auto;
+          width: 260px;
+          height: 360px;
+          padding: 15px;
+          transformY(-180deg);
+          transition: opacity 1.5s ease;
           display: flex;
           flex-direction: column;
           justify-content: space-between;
+          font-size: 12px;
+          opacity: 0;
+          z-index: 1;
+        }
+
+        .card.flipped .front {
+          opacity: 0;
+          z-index: 1;
+        }
+
+        .card.flipped .back {
+          opacity: 1;
+          z-index: 2;
         }
 
         .brawler-name {
           font-size: 24px;
           text-align: center;
-          margin-bottom: 10px;
+          margin-bottom: 5px;
           text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
           color: white;
         }
@@ -70,53 +87,52 @@ class BrawlerCard extends HTMLElement {
           max-width: 80%;
           height: auto;
           object-fit: contain;
-          margin: 10px auto;
+          margin: 5px auto;
           max-height: 180px; /* Limitar altura de la imagen */
         }
 
         .info {
-          font-size: 14px;
+          font-size: 12px;
           color: white;
           flex-grow: 1;
-          overflow-y: auto;
-          margin-bottom: 15px;
+          margin-bottom: 10px;
         }
 
         .info h3 {
-          font-size: 24px;
+          font-size: 20px;
           text-align: center;
-          margin-bottom: 15px;
+          margin-bottom: 10px;
           text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
         }
 
         .info p {
-          margin-bottom: 10px;
+          margin-bottom: 8px;
         }
 
         .section-title {
           font-weight: bold;
-          margin-top: 15px;
-          margin-bottom: 5px;
+          margin-top: 10px;
+          margin-bottom: 3px;
           border-bottom: 1px solid rgba(255,255,255,0.3);
-          padding-bottom: 5px;
+          padding-bottom: 3px;
         }
 
         ul {
           list-style-type: disc;
-          padding-left: 20px;
-          margin-bottom: 10px;
+          padding-left: 15px;
+          margin: 5px 0;
         }
 
         li {
-          margin-bottom: 5px;
+          margin-bottom: 3px;
         }
 
         .strength-bar {
           width: 100%;
-          height: 10px;
+          height: 8px;
           background-color: rgba(255,255,255,0.3);
-          border-radius: 5px;
-          margin-top: 5px;
+          border-radius: 4px;
+          margin-top: 3px;
           overflow: hidden;
         }
 
@@ -124,7 +140,7 @@ class BrawlerCard extends HTMLElement {
           height: 100%;
           width: ${brawler.fuerza}%;
           background-color: white;
-          border-radius: 5px;
+          border-radius: 4px;
         }
 
         .info-btn, .close-btn {
@@ -147,7 +163,7 @@ class BrawlerCard extends HTMLElement {
         
         .close-btn {
           background-color: #dc3545;
-          margin-top: 10px;
+          margin-top: 5px;
         }
         
         .close-btn:hover {
@@ -203,20 +219,20 @@ class BrawlerCard extends HTMLElement {
       </div>
     `
 
-    // Añadir evento al botón Info para voltear la tarjeta
+    // Añadir evento al botón Info para mostrar la parte trasera
     const infoBtn = this.shadowRoot.querySelector(".info-btn")
     const closeBtn = this.shadowRoot.querySelector(".close-btn")
     const card = this.shadowRoot.querySelector(".card")
 
     infoBtn.addEventListener("click", (e) => {
       e.stopPropagation()
-      card.style.transform = "rotateY(180deg)"
+      card.classList.add("flipped")
     })
 
     // Usar el botón Close para volver a la parte frontal
     closeBtn.addEventListener("click", (e) => {
       e.stopPropagation()
-      card.style.transform = ""
+      card.classList.remove("flipped")
     })
   }
 
@@ -280,7 +296,8 @@ document.addEventListener("DOMContentLoaded", () => {
       console.error("Error al cargar los brawlers:", error)
       const container = document.getElementById("brawlers-container")
       const errorMsg = document.createElement("div")
-      errorMsg.textContent = "Error al cargar los brawlers. Failed to Fetch. Asegúrate de que el servidor JSON esté activo."
+      errorMsg.textContent =
+        "Error al cargar los brawlers. Failed to Fetch. Asegúrate de que el servidor JSON esté activo."
       errorMsg.style.color = "red"
       errorMsg.style.padding = "10px"
       errorMsg.style.fontSize = "32px"
