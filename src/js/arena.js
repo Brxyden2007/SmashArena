@@ -15,8 +15,8 @@ class ArenaApp extends HTMLElement {
       this.brawlers = await response.json();
       this.render();
     } catch (error) {
-      console.error('Error cargando los datos:', error);
-      this.shadowRoot.innerHTML = `<div style="color: red; padding: 20px;">Error cargando los datos: ${error.message}</div>`;
+      console.error('Error cargando los datos:', error ,'Asegurate de que tu JSON-SERVER este activo.');
+      this.shadowRoot.innerHTML = `<div style="color: red; padding: 20px; font-size: 25px;">Error cargando los datos: ${error.message}. Asegurate de que tu JSON-SERVER este activo.</div>`;
     }
   }
 
