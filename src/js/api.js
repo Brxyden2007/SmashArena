@@ -8,6 +8,7 @@ export async function getBrawlers() {
     return data;
   } catch (error) {
     console.error('API ERROR:', error);
+    this.shadowInnerHTML.API_URL = ""
     return [];
   }
 }

@@ -280,10 +280,14 @@ document.addEventListener("DOMContentLoaded", () => {
       console.error("Error al cargar los brawlers:", error)
       const container = document.getElementById("brawlers-container")
       const errorMsg = document.createElement("div")
-      errorMsg.textContent = "Error al cargar los brawlers. Asegúrate de que el servidor JSON esté activo."
+      errorMsg.textContent = "Error al cargar los brawlers. Failed to Fetch. Asegúrate de que el servidor JSON esté activo."
       errorMsg.style.color = "red"
-      errorMsg.style.padding = "20px"
-      errorMsg.style.textAlign = "center"
+      errorMsg.style.padding = "10px"
+      errorMsg.style.fontSize = "32px"
+      errorMsg.style.textAlign = "left"
+      errorMsg.style.marginLeft = "-320px"
+      errorMsg.style.fontWeight = "800"
+      errorMsg.style.whiteSpace = "pre"
       container.appendChild(errorMsg)
     })
 })
