@@ -16,7 +16,7 @@ class ArenaApp extends HTMLElement {
       this.render();
     } catch (error) {
       console.error('Error cargando los datos:', error ,'Asegurate de que tu JSON-SERVER este activo.');
-      this.shadowRoot.innerHTML = `<div style="color: red; padding: 20px; font-size: 25px;">Error cargando los datos: ${error.message}. Asegurate de que tu JSON-SERVER este activo.</div>`;
+      this.shadowRoot.innerHTML = `<div style="color: red; padding: 40px; font-size: 32px; text-align: center; font-weight: 800;">Error cargando los datos: ${error.message}. Asegurate de que tu JSON-SERVER este activo.</div>`;
     }
   }
 
