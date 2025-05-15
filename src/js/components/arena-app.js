@@ -90,8 +90,9 @@ export class ArenaApp extends HTMLElement {
         
         /* Estilos para el contenido principal */
         .main {
-          background-color: #f0f0f0;
-          background-image: linear-gradient(to bottom, #e0e0e0, #f8f8f8);
+           background: url(/img/backgroundArena.webp);
+          background-repeat: no-repeat;
+          background-size: cover;
           padding: 2rem;
           min-height: calc(100vh - 80px);
           display: flex;
@@ -271,4 +272,3 @@ export class ArenaApp extends HTMLElement {
     return this.brawlers[randomIndex]
   }
 }
-
