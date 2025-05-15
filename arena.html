@@ -3,8 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Smash Bros Arena</title>
-  <link rel="stylesheet" href="src/css/styles.css">
+  <title>SmashArena</title>
+  <link rel="stylesheet" href="./src/css/styles.css">
+  <link rel="stylesheet" href="./src/css/arena.css">
+  <!-- Importar el módulo principal con type="module" -->
+  <script type="module" src="./src/js/arena.js"></script>
 </head>
 <body>
     <header>
@@ -13,8 +16,8 @@
         </div>
         <nav>
             <ul class="menu">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="brawlers.html">Brawlers</a></li>
+                <li class="smash-nav-item"><a href="index.html">Home</a></li>
+                <li class="smash-nav-item"><a href="brawlers.html">Brawlers</a></li>
                 <li><a href="arena.html" class="active">Arena</a></li>
             </ul>
         </nav>
@@ -24,7 +27,6 @@
             <div class="bar"></div>
         </div>
     </header>
-  <!-- El componente arena-app se insertará aquí mediante JavaScript -->
-  <script src="src/js/arena.js"></script>
+  <arena-app></arena-app>
 </body>
 </html>
