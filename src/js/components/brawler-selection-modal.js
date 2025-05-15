@@ -23,7 +23,7 @@ export class BrawlerSelectionModal extends HTMLElement {
     let brawlerCardsHTML = ""
 
     this.brawlers.forEach((brawler) => {
-      const ataques = brawler.ataques.filter((a) => a.tipo === "ataque").slice(0, 2)
+      const ataques = brawler.ataques && brawler.ataques.filter((a) => a.tipo === "ataque").slice(0, 2)
 
       let debilidadesHTML = ""
       if (brawler.debilidades && Array.isArray(brawler.debilidades)) {
@@ -33,14 +33,16 @@ export class BrawlerSelectionModal extends HTMLElement {
       }
 
       let ataquesHTML = ""
-      ataques.forEach((ataque) => {
-        ataquesHTML += `
-          <div class="attack-item">
-            <span>${ataque.nombre}</span>
-            <span>${ataque.daño}</span>
-          </div>
-        `
-      })
+      if (ataques && ataques.length) {
+        ataques.forEach((ataque) => {
+          ataquesHTML += `
+            <div class="attack-item">
+              <span>${ataque.nombre}</span>
+              <span>${ataque.daño}</span>
+            </div>
+          `
+        })
+      }
 
       // Asegurarse de que la imagen tenga un valor predeterminado si no existe
       const imagenUrl = brawler.imagen || "https://via.placeholder.com/100"
@@ -74,11 +76,44 @@ export class BrawlerSelectionModal extends HTMLElement {
 
     this.shadowRoot.innerHTML = `
       <style>
-        :host { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.7); display: flex; justify-content: center; align-items: center; z-index: 1100; }
-        .modal { background-color: white; border-radius: 8px; padding: 2rem; width: 90%; max-width: 900px; max-height: 90vh; overflow-y: auto; }
-        .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; }
-        .modal-title { font-size: 1.5rem; font-weight: bold; }
-        .close-button { background: none; border: none; font-size: 1.5rem; cursor: pointer; }
+        :host { 
+          position: fixed; 
+          top: 0; 
+          left: 0; 
+          width: 100%; 
+          height: 100%; 
+          background-color: rgba(0, 0, 0, 0.7); 
+          display: flex; 
+          justify-content: center; 
+          align-items: center; 
+          z-index: 1100; 
+        }
+        .modal { 
+          background-color: white; 
+          border-radius: 8px; 
+          padding: 2rem; 
+          width: 90%; 
+          max-width: 900px; 
+          max-height: 90vh; 
+          overflow-y: auto; 
+        }
+        .modal-header { 
+          display: flex; 
+          justify-content: space-between; 
+          align-items: center; 
+          margin-bottom: 1.5rem; 
+        }
+        .modal-title { 
+          font-size: 1.5rem; 
+          font-weight: bold; 
+          color: #ff3333;
+        }
+        .close-button { 
+          background: none; 
+          border: none; 
+          font-size: 1.5rem; 
+          cursor: pointer; 
+        }
         .brawlers-grid { 
           display: grid; 
           grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
@@ -102,15 +137,18 @@ export class BrawlerSelectionModal extends HTMLElement {
         .brawler-image-container { 
           display: flex; 
           justify-content: center; 
+          align-items: center;
           margin-bottom: 1rem;
           border-radius: 8px;
           overflow: hidden;
           box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+          height: 150px;
+          background-color: #f0f0f0;
         }
         .brawler-image { 
-          width: 100%; 
-          height: 12 0%; 
-          object-fit: cover;
+          max-width: 100%;
+          max-height: 150px;
+          object-fit: contain;
           transition: transform 0.3s;
         }
         .brawler-card:hover .brawler-image {
@@ -121,7 +159,7 @@ export class BrawlerSelectionModal extends HTMLElement {
           font-size: 1.2rem; 
           text-align: center; 
           margin-bottom: 0.5rem;
-          color: #333;
+          color: #ff3333;
         }
         .brawler-codename { 
           color: #666; 
@@ -141,7 +179,7 @@ export class BrawlerSelectionModal extends HTMLElement {
           justify-content: space-between; 
           margin-bottom: 0.5rem;
           padding-bottom: 0.5rem;
-          border-bottom: 3px solid #ddd;
+          border-bottom: 1px solid #ddd;
         }
         .stat-label { 
           font-size: 0.9rem;
@@ -151,7 +189,7 @@ export class BrawlerSelectionModal extends HTMLElement {
         .stat-value { 
           font-weight: bold; 
           font-size: 0.9rem;
-          color: gray;
+          color: #333;
         }
         .attacks-list { 
           margin-top: 0.8rem;
@@ -177,7 +215,6 @@ export class BrawlerSelectionModal extends HTMLElement {
           font-size: 0.75rem; 
           padding: 0.2rem 0.4rem; 
           border-radius: 4px;
-          border: 1px solid red;
           box-shadow: 0 2px 4px rgba(255, 0, 0, 0.1);
         }
         .actions { 
@@ -199,11 +236,11 @@ export class BrawlerSelectionModal extends HTMLElement {
           transform: translateY(-2px);
         }
         .secondary-button { 
-          background-color: #ff4d4d; 
-          color: white;
+          background-color: #e2e2e2; 
+          color: #333;
         }
         .secondary-button:hover {
-          background-color: #cc0000;
+          background-color: #d0d0d0;
         }
       </style>
       
