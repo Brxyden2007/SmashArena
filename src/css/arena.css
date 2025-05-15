@@ -1,0 +1,350 @@
+/* Estilos generales */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Arial", sans-serif;
+    background-color: #f0f0f0;
+  }
+  
+  /* Estilos para el header de Smash Bros */
+  .smash-header {
+    background-color: #ff3333;
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .smash-logo {
+    width: 50px;
+    height: 50px;
+    transition: transform 0.3s;
+  }
+  
+  .smash-logo:hover {
+    transform: scale(1.1);
+  }
+  
+  .smash-nav {
+    display: flex;
+    gap: 50px;
+  }
+  
+  .smash-nav-item {
+    font-size: 20px;
+    font-weight: bold;
+    color: black;
+    text-decoration: none;
+    position: relative;
+    transition: color 0.3s;
+  }
+  
+  .smash-nav-item:hover {
+    color: white;
+  }
+  
+  .smash-nav-item::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background-color: white;
+    transition: width 0.3s;
+  }
+  
+  .smash-nav-item:hover::after {
+    width: 100%;
+  }
+  
+  /* Estilos para el contenido principal */
+  .main {
+    background-color: #f0f0f0;
+    background-image: linear-gradient(to bottom, #e0e0e0, #f8f8f8);
+    padding: 2rem;
+    min-height: calc(100vh - 80px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+  }
+  
+  /* Estilos para las tarjetas de modo de juego */
+  .mode-cards-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  
+  .mode-row {
+    display: flex;
+    justify-content: space-around;
+    gap: 30px;
+  }
+  
+  .mode-card {
+    background-color: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+    width: 100%;
+    max-width: 450px;
+    position: relative;
+  }
+  
+  .mode-card:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+  }
+  
+  .mode-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s;
+  }
+  
+  .mode-card:hover img {
+    transform: scale(1.05);
+  }
+  
+  .mode-card::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 30px;
+    height: 30px;
+    background-color: black;
+    border-top-left-radius: 20px;
+  }
+  
+  /* Estilos para la pantalla de versus */
+  .versus-container {
+    width: 90%;
+    max-width: 1000px;
+    height: 80%;
+    max-height: 600px;
+    background-color: #2e0a6c;
+    border-radius: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    box-shadow: 0 0 50px rgba(255, 255, 255, 0.2);
+    overflow: hidden;
+  }
+  
+  .versus-title {
+    position: absolute;
+    top: 20px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: white;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    z-index: 10;
+    animation: titlePulse 2s infinite alternate;
+  }
+  
+  .versus-cards {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  .versus-card {
+    width: 45%;
+    height: 80%;
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  }
+  
+  .player1-card {
+    background-color: #ff3333;
+  }
+  
+  .player2-card {
+    background-color: #ff9ecd;
+  }
+  
+  .card-image {
+    width: 100%;
+    height: 60%;
+    object-fit: cover;
+    display: block;
+  }
+  
+  .card-content {
+    padding: 20px;
+    color: white;
+  }
+  
+  .card-name {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  }
+  
+  .card-stats {
+    font-size: 1rem;
+  }
+  
+  .versus-symbol {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 5rem;
+    font-weight: bold;
+    color: #ffcc00;
+    text-shadow: 0 0 10px rgba(255, 204, 0, 0.7), 0 0 20px rgba(255, 204, 0, 0.5);
+    z-index: 20;
+  }
+  
+  /* Estilos para la selecciÃ³n de brawlers */
+  .brawlers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+    padding: 1rem;
+  }
+  
+  .brawler-card {
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 1.5rem;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .brawler-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    background-color: #fff;
+  }
+  
+  .brawler-image-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .brawler-image {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    transition: transform 0.3s;
+  }
+  
+  .brawler-card:hover .brawler-image {
+    transform: scale(1.05);
+  }
+  
+  .brawler-name {
+    font-weight: bold;
+    font-size: 1.2rem;
+    text-align: center;
+    margin-bottom: 0.5rem;
+    color: #333;
+  }
+  
+  .brawler-codename {
+    color: #666;
+    font-size: 0.9rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    font-style: italic;
+  }
+  
+  /* Animaciones */
+  @keyframes cardEntrance {
+    from {
+      opacity: 0;
+      transform: translateY(50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes titlePulse {
+    from {
+      transform: scale(1);
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    }
+    to {
+      transform: scale(1.05);
+      text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+    }
+  }
+  
+  @keyframes vsAnimation {
+    from {
+      transform: translate(-50%, -50%) scale(1);
+    }
+    to {
+      transform: translate(-50%, -50%) scale(1.1);
+    }
+  }
+  
+  /* Estilos responsivos */
+  @media (max-width: 768px) {
+    .mode-row {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .versus-cards {
+      flex-direction: column;
+      gap: 20px;
+    }
+  
+    .versus-card {
+      width: 90%;
+      height: auto;
+    }
+  
+    .smash-nav {
+      gap: 20px;
+    }
+  
+    .smash-nav-item {
+      font-size: 16px;
+    }
+  
+    .brawlers-grid {
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+  }
