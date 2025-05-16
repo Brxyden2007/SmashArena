@@ -19,6 +19,8 @@ export class BattleModal extends HTMLElement {
       player2DefenseEffect: null,
       // Flag para controlar si hay un efecto en curso
       effectInProgress: false,
+      // Flag para controlar si ya se mostró el modal de victoria
+      victoryModalShown: false,
     }
   }
 
@@ -174,13 +176,22 @@ export class BattleModal extends HTMLElement {
         `
       }
     }
-    // En modo CvC, mostrar un botón para avanzar el turno
+    // En modo CvC, mostrar un botón para avanzar el turno para ambos jugadores
     else if (this.mode === "cvc" && !this.battleState.gameOver) {
-      player1ActionsHTML = `
-        <div class="action-controls">
-          <button class="action-button next-turn-button" id="next-turn-button">Siguiente Turno</button>
-        </div>
-      `
+      // Mostrar el botón de siguiente turno para el jugador que tiene el turno actual
+      if (this.battleState.currentTurn === "player1") {
+        player1ActionsHTML = `
+          <div class="action-controls">
+            <button class="action-button next-turn-button" id="next-turn-button">Siguiente Turno</button>
+          </div>
+        `
+      } else {
+        player2ActionsHTML = `
+          <div class="action-controls">
+            <button class="action-button next-turn-button" id="next-turn-button">Siguiente Turno</button>
+          </div>
+        `
+      }
     }
 
     this.shadowRoot.innerHTML = `
@@ -711,10 +722,27 @@ export class BattleModal extends HTMLElement {
     if (this.battleState.player1Health <= 0 || this.battleState.player2Health <= 0) {
       this.battleState.gameOver = true
 
+      let winnerName = ""
+      let winnerCharacter = null
+
       if (this.battleState.player1Health <= 0) {
-        this.battleState.logs.push(`¡${this.player2.nombre} ha ganado el combate!`)
+        winnerName = this.player2.nombre
+        winnerCharacter = this.player2
+        this.battleState.logs.push(`¡${winnerName} ha ganado el combate!`)
       } else if (this.battleState.player2Health <= 0) {
-        this.battleState.logs.push(`¡${this.player1.nombre} ha ganado el combate!`)
+        winnerName = this.player1.nombre
+        winnerCharacter = this.player1
+        this.battleState.logs.push(`¡${winnerName} ha ganado el combate!`)
+      }
+
+      // Mostrar el modal de victoria si hay un ganador y no se ha mostrado ya
+      if (winnerCharacter && !this.battleState.victoryModalShown) {
+        this.battleState.victoryModalShown = true
+
+        // Pequeño retraso para que se vea primero la actualización del estado
+        setTimeout(() => {
+          this.showVictoryModal(winnerName)
+        }, 500)
       }
     } else {
       // Cambiar el turno
@@ -737,18 +765,44 @@ export class BattleModal extends HTMLElement {
       if (this.battleState.round > 10) {
         this.battleState.gameOver = true
 
+        let winnerName = ""
+        let winnerCharacter = null
+
         if (this.battleState.player1Health > this.battleState.player2Health) {
-          this.battleState.logs.push(`¡${this.player1.nombre} ha ganado el combate por mayor salud restante!`)
+          winnerName = this.player1.nombre
+          winnerCharacter = this.player1
+          this.battleState.logs.push(`¡${winnerName} ha ganado el combate por mayor salud restante!`)
         } else if (this.battleState.player2Health > this.battleState.player1Health) {
-          this.battleState.logs.push(`¡${this.player2.nombre} ha ganado el combate por mayor salud restante!`)
+          winnerName = this.player2.nombre
+          winnerCharacter = this.player2
+          this.battleState.logs.push(`¡${winnerName} ha ganado el combate por mayor salud restante!`)
         } else {
           this.battleState.logs.push("¡El combate ha terminado en empate!")
+          winnerName = ""
+          winnerCharacter = null
+        }
+
+        // Mostrar el modal de victoria si hay un ganador y no se ha mostrado ya
+        if (winnerCharacter && !this.battleState.victoryModalShown) {
+          this.battleState.victoryModalShown = true
+
+          // Pequeño retraso para que se vea primero la actualización del estado
+          setTimeout(() => {
+            this.showVictoryModal(winnerName)
+          }, 500)
         }
       }
     }
 
     // Actualizar la UI
     this.render()
+  }
+
+  // Método para mostrar el modal de victoria
+  showVictoryModal(winnerName) {
+    const victoryModal = document.createElement("victory-modal")
+    victoryModal.character = winnerName
+    document.body.appendChild(victoryModal)
   }
 
   // Método para obtener la descripción del efecto de defensa
@@ -845,6 +899,7 @@ export class BattleModal extends HTMLElement {
       player1DefenseEffect: null,
       player2DefenseEffect: null,
       effectInProgress: false,
+      victoryModalShown: false,
     }
 
     this.render()

@@ -6,6 +6,20 @@ export class ArenaApp extends HTMLElement {
     super()
     this.attachShadow({ mode: "open" })
     this.brawlers = []
+    // Añadir propiedad para el fondo personalizado
+    this._backgroundUrl = ""
+    // Añadir flag para controlar la pantalla versus
+    this._versusScreenShown = false
+  }
+
+  // Getter y setter para el fondo personalizado
+  set backgroundUrl(value) {
+    this._backgroundUrl = value
+    this.render()
+  }
+
+  get backgroundUrl() {
+    return this._backgroundUrl
   }
 
   async connectedCallback() {
@@ -21,6 +35,11 @@ export class ArenaApp extends HTMLElement {
   }
 
   render() {
+    // Usar el fondo personalizado si está establecido, o el gradiente predeterminado
+    const backgroundStyle = this._backgroundUrl
+      ? `background-image: url(/img/backgroundArena.webp); background-size: cover; background-position: center;`
+      : `background-image: linear-gradient(to bottom, #e0e0e0, #f8f8f8);`
+
     this.shadowRoot.innerHTML = `
       <style>
         :host { 
@@ -90,8 +109,7 @@ export class ArenaApp extends HTMLElement {
         
         /* Estilos para el contenido principal */
         .main {
-           background: url(/img/backgroundArena.webp);
-          background-repeat: no-repeat;
+          background: url(/img/backgroundArena.webp);
           background-size: cover;
           padding: 2rem;
           min-height: calc(100vh - 80px);
@@ -158,7 +176,7 @@ export class ArenaApp extends HTMLElement {
           border-top-left-radius: 20px;
         }
         
-        /* AnimaciÃ³n para las tarjetas */
+        /* Animación para las tarjetas */
         @keyframes cardEntrance {
           from {
             opacity: 0;
@@ -182,7 +200,6 @@ export class ArenaApp extends HTMLElement {
           animation: cardEntrance 0.5s ease-out 0.5s both;
         }
       </style>
-    
       <div class="main">
         <div class="mode-cards-container">
           <div class="mode-row">
@@ -220,6 +237,7 @@ export class ArenaApp extends HTMLElement {
     document.body.appendChild(selectionModal)
   }
 
+  // Modificar el método startCvcBattle para corregir la duplicación del modal VS
   startCvcBattle() {
     // Seleccionar dos brawlers aleatorios para el modo CvC
     const randomBrawler1 = this.getRandomBrawler()
@@ -229,24 +247,39 @@ export class ArenaApp extends HTMLElement {
       randomBrawler2 = this.getRandomBrawler()
     }
 
-    // Mostrar la pantalla VS antes de iniciar la batalla
-    this.showVersusScreen(randomBrawler1, randomBrawler2, () => {
-      this.startBattle(randomBrawler1.id, randomBrawler2.id, "cvc")
-    })
+    // Iniciar directamente la batalla sin mostrar la pantalla versus aquí
+    // La pantalla versus se mostrará una sola vez en el método startBattle
+    this.startBattle(randomBrawler1.id, randomBrawler2.id, "cvc")
   }
 
+  // Modificar el método startBattle para controlar la pantalla versus
   startBattle(player1Id, player2Id, mode) {
     const player1 = this.brawlers.find((b) => Number(b.id) === Number(player1Id))
     const player2 = this.brawlers.find((b) => Number(b.id) === Number(player2Id))
 
     // Mostrar la pantalla VS antes de iniciar la batalla
-    this.showVersusScreen(player1, player2, () => {
+    // Solo si no se ha mostrado ya (para el modo CvC)
+    if (mode === "cvc" && this._versusScreenShown) {
+      // Si ya se mostró en modo CvC, iniciar directamente la batalla
       const battleModal = document.createElement("battle-modal")
       battleModal.player1 = player1
       battleModal.player2 = player2
       battleModal.mode = mode
       document.body.appendChild(battleModal)
-    })
+    } else {
+      // Si no se ha mostrado o no es modo CvC, mostrar la pantalla versus
+      if (mode === "cvc") {
+        this._versusScreenShown = true
+      }
+
+      this.showVersusScreen(player1, player2, () => {
+        const battleModal = document.createElement("battle-modal")
+        battleModal.player1 = player1
+        battleModal.player2 = player2
+        battleModal.mode = mode
+        document.body.appendChild(battleModal)
+      })
+    }
   }
 
   showVersusScreen(player1, player2, callback) {
@@ -271,4 +304,42 @@ export class ArenaApp extends HTMLElement {
     const randomIndex = Math.floor(Math.random() * this.brawlers.length)
     return this.brawlers[randomIndex]
   }
+
+  // Método para establecer una imagen personalizada para el fondo
+  setBackgroundImage(url) {
+    if (url && typeof url === "string") {
+      this._backgroundUrl = url
+      this.render()
+      return true
+    }
+    return false
+  }
+}
+
+// Añadir método global para establecer el fondo personalizado
+window.setBackgroundImage = (url) => {
+  const arenaApp = document.querySelector("arena-app")
+  if (arenaApp) {
+    return arenaApp.setBackgroundImage(url)
+  }
+  return false
+}
+
+// Añadir métodos globales para personalizar las imágenes del VS y título
+window.setVsImage = (url) => {
+  if (url && typeof url === "string") {
+    localStorage.setItem("customVsImage", url)
+    console.log("Imagen VS personalizada establecida")
+    return true
+  }
+  return false
+}
+
+window.setTitleImage = (url) => {
+  if (url && typeof url === "string") {
+    localStorage.setItem("customTitleImage", url)
+    console.log("Imagen de título personalizada establecida")
+    return true
+  }
+  return false
 }
