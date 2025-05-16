@@ -19,12 +19,14 @@ class BrawlerCard extends HTMLElement {
           height: 350px;
           margin: 0 auto;
           position: relative;
+          perspective: 1000px;
         }
 
         .card {
           width: 100%;
           height: 100%;
           position: relative;
+          transform-style: preserve-3d;
         }
 
         .front, .back {
@@ -52,17 +54,14 @@ class BrawlerCard extends HTMLElement {
         }
 
         .back {
-          width: 260px;
-          height: 360px;
           padding: 15px;
-          transformY(-180deg);
-          transition: opacity 1.5s ease;
           display: flex;
           flex-direction: column;
           justify-content: space-between;
           font-size: 12px;
           opacity: 0;
           z-index: 1;
+          overflow-y: auto;
         }
 
         .card.flipped .front {
@@ -96,6 +95,7 @@ class BrawlerCard extends HTMLElement {
           color: white;
           flex-grow: 1;
           margin-bottom: 10px;
+          overflow-y: auto;
         }
 
         .info h3 {
@@ -173,6 +173,95 @@ class BrawlerCard extends HTMLElement {
         .button-container {
           display: flex;
           justify-content: center;
+        }
+
+        /* Media queries para dispositivos móviles */
+        @media (max-width: 992px) {
+          .card-container {
+            width: 230px;
+            height: 330px;
+          }
+          
+          .brawler-name {
+            font-size: 22px;
+          }
+          
+          img {
+            max-height: 170px;
+          }
+        }
+        
+        @media (max-width: 768px) {
+          .card-container {
+            width: 220px;
+            height: 320px;
+          }
+          
+          .brawler-name {
+            font-size: 20px;
+          }
+          
+          img {
+            max-height: 160px;
+          }
+          
+          .info {
+            font-size: 11px;
+          }
+          
+          .info h3 {
+            font-size: 18px;
+          }
+        }
+        
+        @media (max-width: 576px) {
+          .card-container {
+            width: 210px;
+            height: 310px;
+          }
+          
+          .brawler-name {
+            font-size: 18px;
+          }
+          
+          img {
+            max-height: 150px;
+          }
+          
+          .info {
+            font-size: 10px;
+          }
+          
+          .info h3 {
+            font-size: 16px;
+          }
+          
+          .info-btn, .close-btn {
+            padding: 7px 14px;
+            width: 90px;
+            font-size: 13px;
+          }
+        }
+        
+        @media (max-width: 480px) {
+          .card-container {
+            width: 200px;
+            height: 300px;
+          }
+          
+          .brawler-name {
+            font-size: 16px;
+          }
+          
+          img {
+            max-height: 140px;
+          }
+          
+          .info-btn, .close-btn {
+            padding: 6px 12px;
+            width: 80px;
+            font-size: 12px;
+          }
         }
       </style>
 
@@ -259,7 +348,6 @@ class BrawlerCard extends HTMLElement {
 
 customElements.define("brawler-card", BrawlerCard)
 
-// Función para manejar el menú hamburguesa
 function setupMobileMenu() {
   const hamburger = document.querySelector(".hamburger")
   const menu = document.querySelector(".menu")
@@ -300,11 +388,9 @@ document.addEventListener("DOMContentLoaded", () => {
         "Error al cargar los brawlers. Failed to Fetch. Asegúrate de que el servidor JSON esté activo."
       errorMsg.style.color = "red"
       errorMsg.style.padding = "10px"
-      errorMsg.style.fontSize = "32px"
-      errorMsg.style.textAlign = "left"
-      errorMsg.style.marginLeft = "-320px"
-      errorMsg.style.fontWeight = "800"
-      errorMsg.style.whiteSpace = "pre"
+      errorMsg.style.fontSize = "24px"
+      errorMsg.style.textAlign = "center"
+      errorMsg.style.fontWeight = "bold"
       container.appendChild(errorMsg)
     })
 })

@@ -8,9 +8,16 @@
 
 /* Estilos generales del body */
 body {
-  background:url(/img/wallpaperkirby.webp) ;
+  background: url(/img/wallpaperkirby.webp);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
   min-height: 100vh;
-  padding-top: 80px; /* Espacio para el header fijo */
+  padding-top: 80px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  padding-top: 100px; /* Ajustado para el header fijo */
 }
 
 /* Estilos del header */
@@ -19,7 +26,7 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 15px 30px;
-  background-color: #ff3333; /* Fondo rojo para el header */
+  background-color: #ff3333;
   color: white;
   position: fixed;
   top: 0;
@@ -71,6 +78,7 @@ header {
   display: none;
   flex-direction: column;
   cursor: pointer;
+  z-index: 1001;
 }
 
 .bar {
@@ -114,11 +122,6 @@ header {
   width: 100%;
 }
 
-.smash-nav {
-  display: flex;
-  gap: 50px;
-}
-
 .smash-nav-item2 {
   font-size: 20px;
   font-weight: bold;
@@ -156,49 +159,85 @@ header {
   margin: 0 auto;
 }
 
-/* Ajuste para dispositivos medianos */
-@media (max-width: 992px) {
-  #brawlers-container {
-    grid-template-columns: repeat(3, 1fr); /* 3 columnas en tablets */
-    gap: 40px;
-  }
-}
-
-
-@media (max-width: 768px) {
-  #brawlers-container {
-    grid-template-columns: repeat(2, 1fr); /* 2 columnas en móviles */
-    gap: 30px;
-    padding: 20px;
-  }
-}
-
-@media (max-width: 480px) {
-  #brawlers-container {
-    grid-template-columns: repeat(1, 1fr); /* 1 columna en móviles pequeños */
-    gap: 25px;
-    padding: 15px;
-  }
-}
-
-/* Contenedor principal para las tarjetas */
-body {
-  padding: 20px;
-  padding-top: 100px; /* Ajustado para el header fijo */
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
 /* Estilos para el componente brawler-card */
 brawler-card {
   display: block;
   margin: 0 auto;
 }
 
-/* Estilos para dispositivos móviles */
-@media (max-width: 768px) {
-  header {
+/* Media queries para diferentes tamaños de pantalla */
+
+/* Pantallas grandes (desktops, 1200px y superiores) */
+@media (min-width: 1200px) {
+  #brawlers-container {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 60px;
+  }
+
+  body {
+    max-width: 1200px;
+  }
+}
+
+/* Pantallas medianas (laptops, tablets horizontales, 992px a 1199px) */
+@media (min-width: 992px) and (max-width: 1199px) {
+  #brawlers-container {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 50px;
+    padding: 35px;
+  }
+
+  body {
+    max-width: 960px;
     padding: 15px;
+    padding-top: 90px;
+  }
+}
+
+/* Tablets y pantallas pequeñas (768px a 991px) */
+@media (min-width: 768px) and (max-width: 991px) {
+  #brawlers-container {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    padding: 30px;
+  }
+
+  body {
+    max-width: 720px;
+    padding: 15px;
+    padding-top: 90px;
+  }
+
+  header {
+    padding: 12px 25px;
+  }
+
+  .menu li {
+    margin: 0 10px;
+  }
+
+  .menu a {
+    padding: 6px 12px;
+    font-size: 14px;
+  }
+}
+
+/* Móviles en modo landscape y tablets pequeñas (576px a 767px) */
+@media (min-width: 576px) and (max-width: 767px) {
+  #brawlers-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    padding: 20px;
+  }
+
+  body {
+    max-width: 540px;
+    padding: 10px;
+    padding-top: 80px;
+  }
+
+  header {
+    padding: 10px 20px;
   }
 
   .menu {
@@ -211,6 +250,7 @@ brawler-card {
     flex-direction: column;
     padding: 20px;
     z-index: 100;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
   }
 
   .menu.active {
@@ -219,25 +259,89 @@ brawler-card {
 
   .menu li {
     margin: 10px 0;
+    width: 100%;
+    text-align: center;
+  }
+
+  .menu a {
+    display: block;
+    padding: 10px;
   }
 
   .hamburger {
     display: flex;
   }
+}
+
+/* Móviles pequeños (hasta 575px) */
+@media (max-width: 575px) {
+  #brawlers-container {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 25px;
+    padding: 15px;
+  }
 
   body {
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 20px;
+    padding: 10px;
+    padding-top: 70px;
+    max-width: 100%;
+  }
+
+  header {
+    padding: 8px 15px;
+  }
+
+  .logo {
+    height: 30px;
+  }
+
+  .menu {
+    display: none;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background-color: #ff3333;
+    flex-direction: column;
     padding: 15px;
-    padding-top: 90px;
+    z-index: 100;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  }
+
+  .menu.active {
+    display: flex;
+  }
+
+  .menu li {
+    margin: 8px 0;
+    width: 100%;
+    text-align: center;
+  }
+
+  .menu a {
+    display: block;
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  .hamburger {
+    display: flex;
   }
 }
 
-@media (max-width: 480px) {
-  body {
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 15px;
+/* Ajustes para pantallas muy pequeñas */
+@media (max-width: 320px) {
+  #brawlers-container {
+    gap: 20px;
     padding: 10px;
-    padding-top: 80px;
+  }
+
+  header {
+    padding: 5px 10px;
+  }
+
+  .logo {
+    height: 25px;
+    margin-right: 5px;
   }
 }
