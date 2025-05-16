@@ -204,17 +204,17 @@ export class ArenaApp extends HTMLElement {
         <div class="mode-cards-container">
           <div class="mode-row">
             <div class="mode-card" id="pvp-mode">
-              <img src="./img/mario-sonic.jpg" alt="Player vs Player" onerror="this.src='https://via.placeholder.com/450x200?text=MARIO+Y+SONIC'">
+              <img src="./img/PlayerVSPlayer.webp" alt="Player vs Player" onerror="this.src='https://via.placeholder.com/450x200?text=MARIO+Y+SONIC'">
             </div>
             
             <div class="mode-card" id="pvc-mode">
-              <img src="./img/kazuya-samus.jpg" alt="Player vs PC" onerror="this.src='https://via.placeholder.com/450x200?text=KAZUYA+Y+SAMUS'">
+              <img src="./img/PlayerVSpc.webp" alt="Player vs PC" onerror="this.src='https://via.placeholder.com/450x200?text=KAZUYA+Y+SAMUS'">
             </div>
           </div>
           
           <div class="mode-row" style="justify-content: center;">
             <div class="mode-card" id="cvc-mode" style="max-width: 600px;">
-              <img src="./img/bayonetta-rob.jpg" alt="PC vs PC" onerror="this.src='https://via.placeholder.com/600x200?text=BAYONETTA+Y+ROB'">
+              <img src="./img/PCvsPC.webp" alt="PC vs PC" onerror="this.src='https://via.placeholder.com/600x200?text=BAYONETTA+Y+ROB'">
             </div>
           </div>
         </div>
