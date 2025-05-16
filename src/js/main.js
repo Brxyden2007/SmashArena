@@ -52,4 +52,28 @@ class NavButtons extends HTMLElement {
     }
 }
 
-customElements.define('nav-buttons', NavButtons);
+function setupMobileMenu() {
+    const hamburger = document.querySelector(".hamburger")
+    const menu = document.querySelector(".menu")
+  
+    if (hamburger) {
+      hamburger.addEventListener("click", () => {
+        menu.classList.toggle("active")
+      })
+    }
+  }
+  
+  // Cargar brawlers desde el servicio API
+  document.addEventListener("DOMContentLoaded", () => {
+    setupMobileMenu()
+  
+    // Limpiar el contenido existente
+    const header = document.querySelector("header")
+    const existingCard = document.querySelector("brawler-card")
+  
+    if (existingCard) {
+      existingCard.remove()
+    }
+},
+
+customElements.define('nav-buttons', NavButtons))
