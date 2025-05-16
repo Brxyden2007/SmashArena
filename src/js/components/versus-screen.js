@@ -6,6 +6,10 @@ export class VersusScreen extends HTMLElement {
     this._player1 = null
     this._player2 = null
     this._eventDispatched = false // Flag para controlar que el evento solo se dispare una vez
+
+    // Cargar imágenes personalizadas desde localStorage
+    this._vsImageUrl = localStorage.getItem("customVsImage") || null
+    this._titleImageUrl = localStorage.getItem("customTitleImage") || null
   }
 
   set player1(value) {
@@ -24,6 +28,26 @@ export class VersusScreen extends HTMLElement {
 
   get player2() {
     return this._player2
+  }
+
+  // Setter y getter para la imagen VS
+  set vsImage(value) {
+    this._vsImageUrl = value
+    this.render()
+  }
+
+  get vsImage() {
+    return this._vsImageUrl
+  }
+
+  // Setter y getter para la imagen del título
+  set titleImage(value) {
+    this._titleImageUrl = value
+    this.render()
+  }
+
+  get titleImage() {
+    return this._titleImageUrl
   }
 
   connectedCallback() {
@@ -55,6 +79,14 @@ export class VersusScreen extends HTMLElement {
     // Asegurarse de que las imágenes tengan valores predeterminados
     const player1Image = this._player1.imagen || "https://via.placeholder.com/400x300?text=PLAYER+1"
     const player2Image = this._player2.imagen || "https://via.placeholder.com/400x300?text=PLAYER+2"
+
+    // URL para la imagen de VS (por defecto un placeholder, pero puede ser personalizada)
+    const vsImageUrl = this._vsImageUrl || "/img/VS.webp"
+
+    // Determinar si mostrar el título como texto o como imagen
+    const titleContent = this._titleImageUrl || "/img/logoSmashBros.webp"
+      ? `<img class="title-image" src="/img/logoSmashBros.webp" alt="SUPER SMASH BROS">`
+      : `<div class="versus-title-text">SUPER SMASH BROS</div>`
 
     this.shadowRoot.innerHTML = `
       <style>
@@ -115,17 +147,26 @@ export class VersusScreen extends HTMLElement {
           left: 0;
           width: 100%;
           text-align: center;
-          font-size: 2.5rem;
-          font-weight: bold;
-          color: white;
-          text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
           z-index: 10;
           animation: titlePulse 2s infinite alternate;
         }
         
+        .versus-title-text {
+          font-size: 2.5rem;
+          font-weight: bold;
+          color: white;
+          text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+        
+        .title-image {
+          max-width: 120%;
+          max-height: 170px;
+          object-fit: contain;
+        }
+        
         @keyframes titlePulse {
-          from { transform: scale(1); text-shadow: 0 0 10px rgba(255, 255, 255, 0.5); }
-          to { transform: scale(1.05); text-shadow: 0 0 20px rgba(255, 255, 255, 0.8); }
+          from { transform: scale(1); filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5)); }
+          to { transform: scale(1.05); filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.8)); }
         }
         
         .versus-cards {
@@ -208,20 +249,25 @@ export class VersusScreen extends HTMLElement {
           margin-bottom: 5px;
         }
         
-        .versus-symbol {
+        .versus-image-container {
           position: absolute;
           left: 50%;
           top: 50%;
           transform: translate(-50%, -50%);
-          font-size: 5rem;
-          font-weight: bold;
-          color: #ffcc00;
-          text-shadow: 
-            0 0 10px rgba(255, 204, 0, 0.7),
-            0 0 20px rgba(255, 204, 0, 0.5);
+          width: 150px;
+          height: 150px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
           z-index: 20;
           opacity: 0;
           animation: vsAppear 0.5s 0.7s forwards, vsAnimation 1s 1.2s infinite alternate;
+        }
+        
+        .versus-image {
+          max-width: 100%;
+          max-height: 100%;
+          object-fit: contain;
         }
         
         @keyframes vsAppear {
@@ -233,22 +279,12 @@ export class VersusScreen extends HTMLElement {
           from { transform: translate(-50%, -50%) scale(1); }
           to { transform: translate(-50%, -50%) scale(1.1); }
         }
-        
-        .versus-image {
-          position: absolute;
-          left: 50%;
-          top: 50%;
-          transform: translate(-50%, -50%);
-          width: 150px;
-          height: auto;
-          z-index: 20;
-          opacity: 0;
-          animation: vsAppear 0.5s 0.7s forwards;
-        }
       </style>
       
       <div class="versus-container">
-        <div class="versus-title">SUPER SMASH BROS</div>
+        <div class="versus-title">
+          ${titleContent}
+        </div>
         
         <div class="versus-cards">
           <!-- Player 1 Card -->
@@ -268,8 +304,10 @@ export class VersusScreen extends HTMLElement {
             </div>
           </div>
           
-          <!-- VS Symbol -->
-          <div class="versus-symbol">VS</div>
+          <!-- VS Image -->
+          <div class="versus-image-container">
+            <img class="versus-image" src="${vsImageUrl}" alt="VS">
+          </div>
           
           <!-- Player 2 Card -->
           <div class="versus-card player2-card">
