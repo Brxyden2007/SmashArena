@@ -22,6 +22,7 @@ export class ArenaApp extends HTMLElement {
     return this._backgroundUrl
   }
 
+  
   async connectedCallback() {
     try {
       // Cargar los datos de los brawlers desde la API
@@ -335,6 +336,29 @@ window.setVsImage = (url) => {
   return false
 }
 
+function setupMobileMenu() {
+  const hamburger = document.querySelector(".hamburger")
+  const menu = document.querySelector(".menu")
+
+  if (hamburger) {
+    hamburger.addEventListener("click", () => {
+      menu.classList.toggle("active")
+    })
+  }
+}
+
+// Cargar brawlers desde el servicio API
+document.addEventListener("DOMContentLoaded", () => {
+  setupMobileMenu()
+
+  // Limpiar el contenido existente
+  const header = document.querySelector("header")
+  const existingCard = document.querySelector("brawler-card")
+
+  if (existingCard) {
+    existingCard.remove()
+  }
+}),
 window.setTitleImage = (url) => {
   if (url && typeof url === "string") {
     localStorage.setItem("customTitleImage", url)

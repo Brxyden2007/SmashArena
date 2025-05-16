@@ -260,7 +260,7 @@ body {
   z-index: 20;
 }
 
-/* Estilos para la selecciÃ³n de brawlers */
+/* Estilos para la seleccion de brawlers */
 .brawlers-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
